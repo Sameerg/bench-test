@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import {
   AccountRow,
   AmountRow,
@@ -8,10 +8,10 @@ import {
   DateRow,
   HeaderRow,
   GridContainer,
-} from "./Statement.style";
+} from './Statement.style';
 import { currencyFormatter, dateFormatter } from '../../utils/formatter'
 import { useErrorHandler } from 'react-error-boundary';
-import { Transaction } from "./Transaction.model";
+import { Transaction } from './Transaction.model';
 
 const Statement = () => {
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
@@ -46,7 +46,7 @@ const Statement = () => {
 
   const Row = (index: number, t: Transaction) => {
     return (
-      <DataRow key={index} aria-label="dataRow">
+      <DataRow key={index} aria-label='dataRow'>
         <DateRow>{dateFormatter(t.Date)}</DateRow>
         <CompanyRow>{t.Company}</CompanyRow>
         <AccountRow>{t.Ledger}</AccountRow>
@@ -57,7 +57,7 @@ const Statement = () => {
 
   return (
     <GridContainer>
-      <HeaderRow aria-label="headerRow">
+      <HeaderRow aria-label='headerRow'>
         <DateRow>Date</DateRow>
         <CompanyRow>Company</CompanyRow>
         <AccountRow>Account</AccountRow>
@@ -65,7 +65,7 @@ const Statement = () => {
       </HeaderRow>
       {transactions
         ? transactions.map((transaction, index) => Row(index, transaction))
-        : "No Data Found!"}
+        : 'No Data Found!'}
     </GridContainer>
   );
 };

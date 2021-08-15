@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Main = styled.div`
   display: table;
@@ -24,10 +24,10 @@ const ErrorFallback = ({ error, resetErrorBoundary }: { error: Error, resetError
         <p>Something went wrong:</p>
         <pre>{error.message}</pre>
         <img
-          src="https://c.tenor.com/LaS8ciJZFDAAAAAM/baby-cry.gif"
-          width="220px"
-          height="154px"
-          alt="cry baby"
+          src='https://c.tenor.com/LaS8ciJZFDAAAAAM/baby-cry.gif'
+          width='220px'
+          height='154px'
+          alt='cry baby'
         /><br></br>
         <button onClick={resetErrorBoundary}>Try again</button>
       </ErrorContainer>
