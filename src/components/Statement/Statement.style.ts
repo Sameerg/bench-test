@@ -9,8 +9,8 @@ export const DataRow = styled.div`
   display: flex;
   min-height: 50px;
   align-items: center;
-  border-bottom: solid 1px #efede8;
-  font-weight:100;
+  border-bottom: solid 1px #e1e1de;
+  font-weight: 100;
 
   &:hover {
     color: #098b8c;
@@ -39,7 +39,7 @@ export const DateRow = styled.span`
   padding: 0px 10px 0px 10px;
 `;
 export const CompanyRow = styled.span`
-  font-weight: bold;
+  font-weight: 500;
   width: 40%;
   line-break: anywhere;
 `;
@@ -49,7 +49,7 @@ export const AccountRow = styled.span`
   line-break: anywhere;
 `;
 export const AmountRow = styled.span`
-  font-weight: bold;
+  font-weight: 500;
   text-align: right;
   padding-right: 20px;
   width: 120px;

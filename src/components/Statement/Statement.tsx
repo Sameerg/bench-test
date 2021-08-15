@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {AccountRow, AmountRow, CompanyRow, DataRow, DateRow, HeaderRow, GridContainer} from './Statement.style';
+import {
+  AccountRow,
+  AmountRow,
+  CompanyRow,
+  DataRow,
+  DateRow,
+  HeaderRow,
+  GridContainer,
+} from "./Statement.style";
+import { currencyFormatter, dateFormatter } from "../../utils/formatter";
 
 const Statement = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -17,10 +26,13 @@ const Statement = () => {
           setPageNumber(pageNumber + 1);
         } else {
           // All data fetched
-          setTotal(transactions.reduce(
-            (acc: number, transaction: Transaction) => acc + Number(transaction.Amount),
-            0
-          ));
+          setTotal(
+            transactions.reduce(
+              (acc: number, transaction: Transaction) =>
+                acc + Number(transaction.Amount),
+              0
+            )
+          );
           console.log(transactions);
         }
       })
@@ -32,21 +44,21 @@ const Statement = () => {
   const Row = (index: number, t: Transaction) => {
     return (
       <DataRow key={index}>
-        <DateRow>{t.Date}</DateRow>
+        <DateRow>{dateFormatter(t.Date)}</DateRow>
         <CompanyRow>{t.Company}</CompanyRow>
         <AccountRow>{t.Ledger}</AccountRow>
-        <AmountRow>{t.Amount}</AmountRow>
+        <AmountRow>{currencyFormatter.format(t.Amount)}</AmountRow>
       </DataRow>
     );
   };
 
   return (
     <GridContainer>
-    <HeaderRow>
+      <HeaderRow>
         <DateRow>Date</DateRow>
         <CompanyRow>Company</CompanyRow>
         <AccountRow>Account</AccountRow>
-        <AmountRow>{total}</AmountRow>
+        <AmountRow>{currencyFormatter.format(total)}</AmountRow>
       </HeaderRow>
       {transactions
         ? transactions.map((transaction, index) => Row(index, transaction))
@@ -60,6 +72,6 @@ export default Statement;
 interface Transaction {
   Date: string;
   Ledger: string;
-  Amount: string;
+  Amount: number;
   Company: string;
 }
