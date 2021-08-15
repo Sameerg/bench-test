@@ -19,9 +19,12 @@ const Statement = () => {
   const [total, setTotal] = React.useState(0);
   const handleError = useErrorHandler()
 
+  const fetchData = async () => {
+    return await axios.get(`https://resttest.bench.co/transactions/${pageNumber}.json`);
+  };
+
   useEffect(() => {
-    axios
-      .get(`https://resttest.bench.co/transactions/${pageNumber}.json`)
+    fetchData()
       .then((response) => {
         setTransactions([...transactions, ...response.data.transactions]);
         let noOfPages: number = Math.ceil(response.data.totalCount / 10);
