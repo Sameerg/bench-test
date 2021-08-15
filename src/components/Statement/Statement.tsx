@@ -9,7 +9,7 @@ import {
   HeaderRow,
   GridContainer,
 } from './Statement.style';
-import { currencyFormatter, dateFormatter } from '../../utils/formatter'
+import { calculateTotalAmount, currencyFormatter, dateFormatter } from '../../utils/formatter'
 import { useErrorHandler } from 'react-error-boundary';
 import { Transaction } from './Transaction.model';
 
@@ -29,20 +29,15 @@ const Statement = () => {
           setPageNumber(pageNumber + 1);
         } else {
           // All data fetched
-          setTotal(
-            transactions.reduce(
-              (acc: number, transaction: Transaction) =>
-                acc + Number(transaction.Amount),
-              0
-            )
-          );
+          setTotal(calculateTotalAmount(transactions));
         }
       })
       .catch((err) => {
-        setTotal(0);
         handleError(err); 
       });
   }, [pageNumber]);
+
+  
 
   const Row = (index: number, t: Transaction) => {
     return (

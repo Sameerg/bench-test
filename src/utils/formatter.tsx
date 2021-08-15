@@ -1,4 +1,5 @@
 import format from 'date-fns/format';
+import { Transaction } from '../components/Statement/Transaction.model';
 
 export const currencyFormatter = (amount: Number | string) => {
   const number = typeof amount === 'number' ? amount : Number(amount);
@@ -15,3 +16,12 @@ export const dateFormatter = (date: string) => {
     return '';
   }
 };
+
+export const calculateTotalAmount = (transactions: Transaction[]) => {
+  return transactions.reduce(
+      (acc: number, transaction: Transaction) =>
+        acc + Number(transaction.Amount),
+      0
+    
+  );
+}

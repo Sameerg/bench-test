@@ -9,23 +9,24 @@ test('should render Transaction Component and check columns', () => {
   expect(headerRow).not.toBeNull();
 });
 
-// test('should ', () => {
+// test('should render datarow', async () => {
 //   const transactions: Transaction[] = [
 //     {
 //       Date: '2013-12-22',
 //       Ledger: 'Phone & Internet Expense',
-//       Amount: '-110.71',
+//       Amount: '110.71',
 //       Company: 'SHAW CABLESYSTEMS CALGARY AB',
 //     },
 //   ];
 //   const realUseState = React.useState;
-//   const stubData = transactions;
 //   jest
 //     .spyOn(React, 'useState')
-//     .mockImplementationOnce(() => realUseState<any>(stubData));
+//     .mockImplementationOnce(() => realUseState<any>(transactions));
 
 //   const wrapper = render(<Statement />);
 
 //   const dataRow = wrapper.getByLabelText('dataRow');
 //   expect(dataRow).not.toBeNull();
+//   await wrapper.findByText('$110.71');
 // });
+

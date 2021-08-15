@@ -1,16 +1,4 @@
-import styled from 'styled-components';
-
-const Main = styled.div`
-  display: table;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-`;
-
-const ErrorContainer = styled.div`
-  display: table-cell;
-  vertical-align: middle;
-`;
+import {Main, ErrorContainer} from './ErrorBoundary.style';
 
 const myErrorHandler = (error: Error, info: { componentStack: string }) => {
   // Do something with the error  E.g. log to an error logging client here

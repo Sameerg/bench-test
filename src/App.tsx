@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorFallback, myErrorHandler } from './utils/ErrorBoundary';
+import { ErrorFallback, myErrorHandler } from './utils/ErrorBoundary/ErrorBoundary';
 import { AppContainer } from './App.style';
 import Header from './components/Header/Header';
 import Statement from './components/Statement/Statement';

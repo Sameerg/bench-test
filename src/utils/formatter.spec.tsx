@@ -1,4 +1,5 @@
-import { currencyFormatter, dateFormatter } from './formatter';
+import { Transaction } from '../components/Statement/Transaction.model';
+import { calculateTotalAmount, currencyFormatter, dateFormatter } from './formatter';
 
 test('should format amount', () => {
   let formatted = currencyFormatter('100');
@@ -25,3 +26,22 @@ test('should handle date as empty string', () => {
   let formatted = dateFormatter('');
   expect(formatted).toEqual('');
 });
+
+test('should able to calulate transactions sum', () => {
+  const transactions: Transaction[] = [
+    {
+      Date: '2013-12-22',
+      Ledger: 'Phone & Internet Expense',
+      Amount: '-110.01',
+      Company: 'SHAW CABLESYSTEMS CALGARY AB',
+    },{
+      Date: '2013-12-22',
+      Ledger: 'Phone & Internet Expense',
+      Amount: '-10.00',
+      Company: 'SHAW CABLESYSTEMS CALGARY AB',
+    },
+  ];
+  let total = calculateTotalAmount(transactions);
+  expect(total).toEqual(-120.01);
+});
+
