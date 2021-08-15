@@ -1,5 +1,5 @@
 import { Transaction } from '../components/Statement/Transaction.model';
-import { calculateTotalAmount, currencyFormatter, dateFormatter } from './formatter';
+import { calculateTotalAmount, currencyFormatter, dateFormatter } from './Utils';
 
 test('should format amount', () => {
   let formatted = currencyFormatter('100');

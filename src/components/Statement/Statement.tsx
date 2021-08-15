@@ -9,7 +9,7 @@ import {
   HeaderRow,
   GridContainer,
 } from './Statement.style';
-import { calculateTotalAmount, currencyFormatter, dateFormatter } from '../../utils/formatter'
+import { calculateTotalAmount, currencyFormatter, dateFormatter } from '../../utils/Utils'
 import { useErrorHandler } from 'react-error-boundary';
 import { Transaction } from './Transaction.model';
 
@@ -35,6 +35,7 @@ const Statement = () => {
       .catch((err) => {
         handleError(err); 
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber]);
 
   
@@ -58,9 +59,7 @@ const Statement = () => {
         <AccountRow>Account</AccountRow>
         <AmountRow>{currencyFormatter(total)}</AmountRow>
       </HeaderRow>
-      {transactions
-        ? transactions.map((transaction, index) => Row(index, transaction))
-        : 'No Data Found!'}
+      {transactions && transactions.map((transaction, index) => Row(index, transaction))}
     </GridContainer>
   );
 };
