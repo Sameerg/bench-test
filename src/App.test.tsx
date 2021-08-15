@@ -1,9 +1,8 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Bench/i);
-  expect(linkElement).toBeInTheDocument();
+test("should render App Component", () => {
+  const { getByLabelText } = render(<App />);
+  const headerRow = getByLabelText('appContainer')
+  expect(headerRow).not.toBeNull();
 });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import {
   AccountRow,
@@ -11,11 +11,12 @@ import {
 } from "./Statement.style";
 import { currencyFormatter, dateFormatter } from '../../utils/formatter'
 import { useErrorHandler } from 'react-error-boundary';
+import { Transaction } from "./Transaction.model";
 
 const Statement = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [total, setTotal] = useState(0);
+  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
+  const [pageNumber, setPageNumber] = React.useState(1);
+  const [total, setTotal] = React.useState(0);
   const handleError = useErrorHandler()
 
   useEffect(() => {
@@ -38,28 +39,29 @@ const Statement = () => {
         }
       })
       .catch((err) => {
+        setTotal(0);
         handleError(err); 
       });
   }, [pageNumber]);
 
   const Row = (index: number, t: Transaction) => {
     return (
-      <DataRow key={index}>
+      <DataRow key={index} aria-label="dataRow">
         <DateRow>{dateFormatter(t.Date)}</DateRow>
         <CompanyRow>{t.Company}</CompanyRow>
         <AccountRow>{t.Ledger}</AccountRow>
-        <AmountRow>{currencyFormatter.format(t.Amount)}</AmountRow>
+        <AmountRow>{currencyFormatter(t.Amount)}</AmountRow>
       </DataRow>
     );
   };
 
   return (
     <GridContainer>
-      <HeaderRow>
+      <HeaderRow aria-label="headerRow">
         <DateRow>Date</DateRow>
         <CompanyRow>Company</CompanyRow>
         <AccountRow>Account</AccountRow>
-        <AmountRow>{currencyFormatter.format(total)}</AmountRow>
+        <AmountRow>{currencyFormatter(total)}</AmountRow>
       </HeaderRow>
       {transactions
         ? transactions.map((transaction, index) => Row(index, transaction))
@@ -69,10 +71,3 @@ const Statement = () => {
 };
 
 export default Statement;
-
-interface Transaction {
-  Date: string;
-  Ledger: string;
-  Amount: number;
-  Company: string;
-}

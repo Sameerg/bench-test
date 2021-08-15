@@ -8,7 +8,7 @@ import Statement from './components/Statement/Statement';
 function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={myErrorHandler}>
-    <AppContainer>
+    <AppContainer aria-label="appContainer">
        <Header />
        <Statement />
       </AppContainer>
