@@ -9,12 +9,14 @@ import {
   HeaderRow,
   GridContainer,
 } from "./Statement.style";
-import { currencyFormatter, dateFormatter } from "../../utils/formatter";
+import { currencyFormatter, dateFormatter } from '../../utils/formatter'
+import { useErrorHandler } from 'react-error-boundary';
 
 const Statement = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [total, setTotal] = useState(0);
+  const handleError = useErrorHandler()
 
   useEffect(() => {
     axios
@@ -33,11 +35,10 @@ const Statement = () => {
               0
             )
           );
-          console.log(transactions);
         }
       })
       .catch((err) => {
-        console.log(err);
+        handleError(err); 
       });
   }, [pageNumber]);
 
